@@ -22,8 +22,7 @@ public class EventoDTO {
     private LocalDate fecha;
     private String organizador;
     private String beneficios;
-    private String recompensa;
+    private Integer recompensa;
     private String estado;
-    private Long comunidadId;//
-    //
+    private Long comunidadId;
 }

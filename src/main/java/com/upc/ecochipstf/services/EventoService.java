@@ -31,6 +31,9 @@ public class EventoService implements IEventoService {
         Comunidad comunidad = comunidadRepository.findById(eventoDTO.getComunidadId())
                 .orElseThrow(() -> new RuntimeException("Comunidad no encontrada"));
         evento.setComunidad(comunidad);
+        evento.setUbicacion(comunidad.getUbicacion()); // mismo lugar que la comunidad
+        evento.setOrganizador(comunidad.getModerador().getNombreUsuario() + " " + comunidad.getModerador().getApellidoUsuario());
+        evento.setEstado("Próximo");
         evento = eventoRepository.save(evento);
         return modelMapper.map(evento, EventoDTO.class);
     }
@@ -42,4 +45,4 @@ public class EventoService implements IEventoService {
                 .map(evento -> modelMapper.map(evento, EventoDTO.class))
                 .collect(Collectors.toList());
     }
-}//
+}

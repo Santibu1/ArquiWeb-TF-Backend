@@ -17,7 +17,7 @@ public class UsuarioEventoController {
     private IUsuarioEventoService usuarioEventoService;
 
     @PreAuthorize("hasAnyRole('MODERADOR', 'CLIENTE')")
-    @PostMapping("/inscribirse/{usuarioId}/{eventoId}")
+    @PutMapping("/inscribirse/{usuarioId}/{eventoId}")
     public UsuarioEventoDTO inscribirse(@PathVariable Long usuarioId, @PathVariable Long eventoId) {
         return usuarioEventoService.inscribirseEnEvento(usuarioId, eventoId);
     }
