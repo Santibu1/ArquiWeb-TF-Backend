@@ -18,7 +18,7 @@ public class UsuarioProductoController {
     @Autowired
     private IUsuarioProductoService usuarioProductoService;
 
-    @PreAuthorize("hasAnyRole('ADMINISTRADOR', 'MODERADOR', 'CLIENTE')")
+    //@PreAuthorize("hasAnyRole('ADMINISTRADOR', 'MODERADOR', 'CLIENTE')")
     @PostMapping("/canjear")
     public ResponseEntity<?> canjear(@RequestBody UsuarioProductoRequestDTO requestDTO) {
         try {
@@ -32,7 +32,7 @@ public class UsuarioProductoController {
         }
     }
 
-    @PreAuthorize("hasAnyRole('ADMINISTRADOR', 'MODERADOR', 'CLIENTE')")
+    //@PreAuthorize("hasAnyRole('ADMINISTRADOR', 'MODERADOR', 'CLIENTE')")
     @GetMapping("/historial/{usuarioId}")
     public ResponseEntity<?> listar(@PathVariable Long usuarioId) {
         List<UsuarioProductoResponseDTO> historial = usuarioProductoService.historial(usuarioId);

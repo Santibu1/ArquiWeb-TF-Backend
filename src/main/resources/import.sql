@@ -46,3 +46,21 @@ INSERT INTO comunidad (id_moderador, idsolicitud, estado, ubicacion, nombre, des
 
 INSERT INTO evento (nombre, descripcion, ubicacion, fecha, organizador, beneficios, recompensa, estado, comunidad_id) VALUES ('Reciclatón Universitaria', 'Campaña de reciclaje de botellas y chips electrónicos dentro del campus.', 'Monterrico - Patio Central', '2025-10-10', 'Comunidad UPC', 'Acumula EcoBits y colabora con el medio ambiente.', 50, 'Activo', 1);
 INSERT INTO evento (nombre, descripcion, ubicacion, fecha, organizador, beneficios, recompensa, estado, comunidad_id) VALUES ('Día Verde UPC', 'Evento ecológico con talleres sobre reducción de residuos y movilidad sostenible.', 'Auditorio Principal UPC', '2025-10-15', 'Comunidad UPC', 'Descuentos en productos ecológicos y reconocimiento digital.', 40, 'Activo', 1);
+
+INSERT INTO usuario_producto (ecobits, fecha, producto_id, usuario_id, estado) VALUES (4, '2025-11-04 04:03:36.256730',  7, 1, 'Completado');
+INSERT INTO usuario_producto (ecobits, fecha, producto_id, usuario_id, estado) VALUES (25, '2025-11-04 04:03:43.522282', , 1, 'Completado');
+INSERT INTO usuario_producto (ecobits, fecha, producto_id, usuario_id, estado) VALUES (30, '2025-11-04 04:03:47.197806',  3, 1, 'Completado');
+INSERT INTO usuario_producto (ecobits, fecha, producto_id, usuario_id, estado) VALUES (2, '2025-11-04 04:03:49.429174',  8, 1, 'Completado');
+INSERT INTO usuario_producto (ecobits, fecha, producto_id, usuario_id, estado) VALUES (650, '2025-11-04 04:03:59.436910',  10, 1, 'Completado');
+INSERT INTO usuario_producto (ecobits, fecha, producto_id, usuario_id, estado) VALUES (4, '2025-11-04 04:04:09.866382',  7, 1, 'Completado');
+INSERT INTO usuario_producto (ecobits, fecha, producto_id, usuario_id, estado) VALUES (650, '2025-11-04 04:04:14.717953',  10, 2, 'Completado');
+INSERT INTO usuario_producto (ecobits, fecha, producto_id, usuario_id, estado) VALUES (30, '2025-11-04 04:04:21.991862',  3, 2, 'Completado');
+INSERT INTO usuario_producto (ecobits, fecha, producto_id, usuario_id, estado) VALUES (2, '2025-11-04 04:04:24.930347',  8, 2, 'Completado');
+INSERT INTO usuario_producto (ecobits, fecha, producto_id, usuario_id, estado) VALUES (9, '2025-11-04 04:04:30.028154', 5, 3, 'Completado');
+INSERT INTO usuario_producto (ecobits, fecha, producto_id, usuario_id, estado) VALUES (480, '2025-11-04 04:04:32.842514',  11, 3, 'Completado');
+INSERT INTO usuario_producto (ecobits, fecha, producto_id, usuario_id, estado) VALUES (100, '2025-11-04 04:04:35.269749',  12, 3, 'Completado');
+INSERT INTO usuario_producto (ecobits, fecha, producto_id, usuario_id, estado) VALUES (25, '2025-11-04 04:05:10.053553',  1, 4, 'Completado');
+INSERT INTO usuario_producto (ecobits, fecha, producto_id, usuario_id, estado) VALUES (25, '2025-11-04 04:05:12.637059',  1, 4, 'Completado');
+INSERT INTO usuario_producto (ecobits, fecha, producto_id, usuario_id, estado) VALUES (480, '2025-11-04 04:05:27.250404',  11, 1, 'Completado');
+INSERT INTO usuario_producto (ecobits, fecha, producto_id, usuario_id, estado) VALUES (480, '2025-11-04 04:05:28.634349',  11, 1, 'Completado');
+INSERT INTO usuario_producto (ecobits, fecha, producto_id, usuario_id, estado) VALUES (480, '2025-11-04 04:05:29.532961',  11, 1, 'Completado');

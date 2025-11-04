@@ -47,6 +47,22 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(cors -> {}) // Habilitar CORS
                 .authorizeHttpRequests(auth -> auth
+                        .anyRequest().permitAll()
+                )
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                );
+
+        //http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+
+        return http.build();
+    }
+    /*@Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+                .csrf(AbstractHttpConfigurer::disable)
+                .cors(cors -> {}) // Habilitar CORS
+                .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
                                 "/api/auth/login",
                                 "/api/usuarios/registrarUsuario",
@@ -63,6 +79,9 @@ public class SecurityConfig {
 
         return http.build();
     }
+
+     */
+
 
     // (Opcional) CORS global si se desea controlar desde el backend
     // Descomenta si tu frontend no puede acceder por CORS

@@ -19,14 +19,15 @@ public class Evento {
     private Long eventoId;
 
     private String nombre;
-    private String descripcion;
-    private String ubicacion;
-    private LocalDate fecha;
-    private String organizador;
-    private String beneficios;
-    private Integer recompensa;
-    private String estado;
+    private String descripcion; // breve descripción del evento
+    private String ubicacion;   // lugar del evento
+    private LocalDate fecha;    // fecha del evento
+    private String organizador; // quién lo organiza
+    private String beneficios;  // puntos o beneficios por participar
+    private Integer recompensa;  // recompensa adicional, si aplica
+    private String estado;      // “Próximo”, “Finalizado”, etc.
     @ManyToOne
     @JoinColumn(name = "comunidad_id")
-    private Comunidad comunidad;
+    private Comunidad comunidad; //
+    //
 }
