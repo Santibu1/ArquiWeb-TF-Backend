@@ -151,4 +151,28 @@ public class UsuarioService implements IUsuarioService {
 
         return respuesta;
     }
+    @Override
+    public UsuarioDTO buscarPorEmail(String email) {
+        // 1. Buscamos al usuario en la base de datos usando el repositorio
+        Usuario usuario = usuarioRepository.findByEmailUsuario(email);
+
+        // 2. Verificamos si existe (debería, si el token es válido)
+        if (usuario == null) {
+            throw new RuntimeException("Usuario no encontrado con email: " + email);
+        }
+
+        // 3. Convertimos la entidad Usuario a UsuarioDTO
+        UsuarioDTO dto = modelMapper.map(usuario, UsuarioDTO.class);
+
+        // 4. Asignamos los IDs de las relaciones (buena práctica que ya usas en modificarUsuario)
+        if (usuario.getRol() != null) {
+            dto.setRolId(usuario.getRol().getRolId());
+        }
+        if (usuario.getPlan() != null) {
+            dto.setPlanId(usuario.getPlan().getPlanId());
+        }
+
+        // 5. Devolvemos el DTO con la información del perfil
+        return dto;
+    }
 }

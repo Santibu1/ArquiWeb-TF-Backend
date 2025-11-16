@@ -18,7 +18,6 @@ public class Empresa {
     private String nombre;
     private String categoria;
     private String descripcion;
-    private Integer cantidadProductos;
     private String estado;
 
     @ManyToOne

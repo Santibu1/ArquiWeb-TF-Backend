@@ -12,6 +12,7 @@ public interface IUsuarioService {
     public UsuarioDTO modificarUsuario(Long id, UsuarioDTO usuarioDTO);
     public List<UsuarioDTO> listarUsuarios();
     public UsuarioDTO asignarPlan(Long usuarioId, Long planId);
+    public UsuarioDTO buscarPorEmail(String email);
     
     public LoginDTO login(LoginDTO loginDTO);
 }
