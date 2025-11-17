@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface IProductoService {
     public ProductoDTO crearProducto(ProductoDTO productoDTO);
+    public List<ProductoDTO> listarTodosProductos();
     public List<ProductoDTO> listarProductosActivos();
     public List<ProductoDTO> listarProductosPorEmpresa(Long empresaId);
     public ProductoDTO obtenerProductoPorId(Long id);
