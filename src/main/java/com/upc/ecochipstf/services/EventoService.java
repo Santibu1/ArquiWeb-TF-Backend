@@ -47,4 +47,4 @@ public class EventoService implements IEventoService {
                 .map(evento -> modelMapper.map(evento, EventoDTO.class))
                 .collect(Collectors.toList());
     }
-}//
+}

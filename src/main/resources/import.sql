@@ -41,8 +41,9 @@ INSERT INTO actividad (nombre, descripcion, recompensa, categoria, estado, usuar
 INSERT INTO actividad (nombre, descripcion, recompensa, categoria, estado, usuario_id) VALUES ('Participación en Feria Verde', 'Únete como voluntario en ferias ecológicas promoviendo productos sostenibles.', 35, 'Voluntariado', 'Activa', 1);
 
 INSERT INTO solicitud (id_moderador, id_admin, nombre_comunidad, ubicacion, descripcion, estado, fecha_creacion, fecha_revision) VALUES (5, null, 'EcoDeportistas Lima', 'San Borja', 'Grupo de corredores y ciclistas que canjean puntos por productos ecológicos.', 'Activo', '2025-10-05', '2025-10-05');
+INSERT INTO solicitud (id_moderador, id_admin, nombre_comunidad, ubicacion, descripcion, estado, fecha_creacion, fecha_revision) VALUES (2, null, 'EcoRecolecta Flash', 'Lima', 'Grupo de recolecta en diferentes puntos de la capital.', 'Activo', '2025-10-05', '2025-10-05');
 
-INSERT INTO comunidad (id_moderador, idsolicitud, estado, ubicacion, nombre, descripcion) VALUES (5, 1, 'Aprobada', 'San Borja', 'EcoDeportistas Lima', 'Grupo de corredores y ciclistas que canjean puntos por productos ecológicos.');
+--INSERT INTO comunidad (id_moderador, idsolicitud, estado, ubicacion, nombre, descripcion) VALUES (5, 1, 'Aprobada', 'San Borja', 'EcoDeportistas Lima', 'Grupo de corredores y ciclistas que canjean puntos por productos ecológicos.');
 
 INSERT INTO evento (nombre, descripcion, ubicacion, fecha, organizador, beneficios, recompensa, estado, comunidad_id) VALUES ('Reciclatón Universitaria', 'Campaña de reciclaje de botellas y chips electrónicos dentro del campus.', 'Monterrico - Patio Central', '2025-10-10', 'Comunidad UPC', 'Acumula EcoBits y colabora con el medio ambiente.', 50, 'Activo', 1);
 INSERT INTO evento (nombre, descripcion, ubicacion, fecha, organizador, beneficios, recompensa, estado, comunidad_id) VALUES ('Día Verde UPC', 'Evento ecológico con talleres sobre reducción de residuos y movilidad sostenible.', 'Auditorio Principal UPC', '2025-10-15', 'Comunidad UPC', 'Descuentos en productos ecológicos y reconocimiento digital.', 40, 'Activo', 1);
