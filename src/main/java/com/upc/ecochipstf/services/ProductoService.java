@@ -39,6 +39,13 @@ public class ProductoService implements IProductoService {
         producto = productoRepository.save(producto);
         return modelMapper.map(producto, ProductoDTO.class);
     }
+    @Override
+    public List<ProductoDTO> listarTodosProductos() {
+        return productoRepository.findAll()
+                .stream()
+                .map(prod -> modelMapper.map(prod, ProductoDTO.class))
+                .collect(Collectors.toList());
+    }
 
     @Override
     public List<ProductoDTO> listarProductosActivos() {
