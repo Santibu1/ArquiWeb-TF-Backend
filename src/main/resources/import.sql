@@ -17,18 +17,24 @@ INSERT INTO empresa (nombre, categoria, descripcion, estado, usuario_id) VALUES 
 INSERT INTO empresa (nombre, categoria, descripcion, estado, usuario_id) VALUES ('VitaPack SAC', 'Empaques Biodegradables', 'Empresa que fabrica envases y empaques compostables elaborados con almidón de maíz y fibra vegetal, ideales para negocios sostenibles.', 'Activa', 1);
 INSERT INTO empresa (nombre, categoria, descripcion, estado, usuario_id) VALUES ('SolarLife EIRL', 'Energías Renovables', 'Compañía dedicada a la instalación de paneles solares residenciales y empresariales para reducir la huella de carbono.', 'Activa', 1);
 
-INSERT INTO producto (nombre, categoria, precio, stock, estado, empresa_id) VALUES ('Mouse Reciclado', 'Accesorios', 25.00, 5, 'Activo', 1);
-INSERT INTO producto (nombre, categoria, precio, stock, estado, empresa_id) VALUES ('Teclado Ecológico', 'Accesorios', 45.00, 3, 'Inactivo', 1);
-INSERT INTO producto (nombre, categoria, precio, stock, estado, empresa_id) VALUES ('Pendrive Reutilizado 32GB', 'Almacenamiento', 30.00, 10, 'Activo', 1);
-INSERT INTO producto (nombre, categoria, precio, stock, estado, empresa_id) VALUES ('Snack de Quinoa y Frutas', 'Snacks Naturales', 15.00, 20, 'Inactivo', 2);
-INSERT INTO producto (nombre, categoria, precio, stock, estado, empresa_id) VALUES ('Barra Energética de Cacao Orgánico', 'Snacks Naturales', 9.00, 25, 'Activo', 2);
-INSERT INTO producto (nombre, categoria, precio, stock, estado, empresa_id) VALUES ('Pack de Mix Andino (Kiwicha, Chía y Pasas)', 'Alimentos Saludables', 15.00, 15, 'Activo', 2);
-INSERT INTO producto (nombre, categoria, precio, stock, estado, empresa_id) VALUES ('Caja Compostable Mediana', 'Empaques', 4.00, 40, 'Activo', 3);
-INSERT INTO producto (nombre, categoria, precio, stock, estado, empresa_id) VALUES ('Bolsa Biodegradable 10L', 'Empaques', 2.00, 100, 'Activo', 3);
-INSERT INTO producto (nombre, categoria, precio, stock, estado, empresa_id) VALUES ('Vaso Ecológico de Maíz 12oz', 'Utensilios', 2.00, 80, 'Activo', 3);
-INSERT INTO producto (nombre, categoria, precio, stock, estado, empresa_id) VALUES ('Panel Solar Residencial 300W', 'Energía Solar', 650.00, 6, 'Activo', 4);
-INSERT INTO producto (nombre, categoria, precio, stock, estado, empresa_id) VALUES ('Kit Solar Portátil', 'Energía Solar', 480.00, 8, 'Activo', 4);
-INSERT INTO producto (nombre, categoria, precio, stock, estado, empresa_id) VALUES ('Lámpara LED Solar Exterior', 'Iluminación', 100.00, 20, 'Activo', 4);
+-- Productos Empresa 1 (Tecnología)
+INSERT INTO producto (nombre, categoria, precio, stock, estado, empresa_id, url_imagen) VALUES ('Mouse Reciclado', 'Accesorios', 25.00, 5, 'Activo', 1, 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=500&q=60');
+INSERT INTO producto (nombre, categoria, precio, stock, estado, empresa_id, url_imagen) VALUES ('Teclado Ecológico', 'Accesorios', 45.00, 3, 'Inactivo', 1, 'https://images.unsplash.com/photo-1587829745563-84b705c063c9?auto=format&fit=crop&w=500&q=60');
+INSERT INTO producto (nombre, categoria, precio, stock, estado, empresa_id, url_imagen) VALUES ('Pendrive Reutilizado 32GB', 'Almacenamiento', 30.00, 10, 'Activo', 1, 'https://images.unsplash.com/photo-1629815091993-9c8821043322?auto=format&fit=crop&w=500&q=60');
+
+-- Productos Empresa 2 (Alimentos)
+INSERT INTO producto (nombre, categoria, precio, stock, estado, empresa_id, url_imagen) VALUES ('Snack de Quinoa y Frutas', 'Snacks Naturales', 15.00, 20, 'Inactivo', 2, 'https://images.unsplash.com/photo-1590796819285-d68a6b8f5207?auto=format&fit=crop&w=500&q=60');
+INSERT INTO producto (nombre, categoria, precio, stock, estado, empresa_id, url_imagen) VALUES ('Barra Energética de Cacao', 'Snacks Naturales', 9.00, 25, 'Activo', 2, 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=500&q=60');
+INSERT INTO producto (nombre, categoria, precio, stock, estado, empresa_id, url_imagen) VALUES ('Pack de Mix Andino', 'Alimentos Saludables', 15.00, 15, 'Activo', 2, 'https://images.unsplash.com/photo-1589578168235-90b96860368a?auto=format&fit=crop&w=500&q=60');
+-- Productos Empresa 3 (Empaques)
+INSERT INTO producto (nombre, categoria, precio, stock, estado, empresa_id, url_imagen) VALUES ('Caja Compostable Mediana', 'Empaques', 4.00, 40, 'Activo', 3, 'https://images.unsplash.com/photo-1605647540924-852290f6b0d5?auto=format&fit=crop&w=500&q=60');
+INSERT INTO producto (nombre, categoria, precio, stock, estado, empresa_id, url_imagen) VALUES ('Bolsa Biodegradable 10L', 'Empaques', 2.00, 100, 'Activo', 3, 'https://images.unsplash.com/photo-1598532163257-ae3c6b2524b6?auto=format&fit=crop&w=500&q=60');
+INSERT INTO producto (nombre, categoria, precio, stock, estado, empresa_id, url_imagen) VALUES ('Vaso Ecológico de Maíz', 'Utensilios', 2.00, 80, 'Activo', 3, 'https://images.unsplash.com/photo-1577900232427-18219b9166a0?auto=format&fit=crop&w=500&q=60');
+
+-- Productos Empresa 4 (Energía)
+INSERT INTO producto (nombre, categoria, precio, stock, estado, empresa_id, url_imagen) VALUES ('Panel Solar Residencial', 'Energía Solar', 650.00, 6, 'Activo', 4, 'https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=500&q=60');
+INSERT INTO producto (nombre, categoria, precio, stock, estado, empresa_id, url_imagen) VALUES ('Kit Solar Portátil', 'Energía Solar', 480.00, 8, 'Activo', 4, 'https://images.unsplash.com/photo-1545259741-2ea3ebf61fa3?auto=format&fit=crop&w=500&q=60');
+INSERT INTO producto (nombre, categoria, precio, stock, estado, empresa_id, url_imagen) VALUES ('Lámpara LED Solar', 'Iluminación', 100.00, 20, 'Activo', 4, 'https://images.unsplash.com/photo-1563309636-628d09795ca5?auto=format&fit=crop&w=500&q=60');
 
 INSERT INTO actividad (nombre, descripcion, recompensa, categoria, estado, usuario_id) VALUES ('Trote a la Avenida 3km', 'Trote individual o grupal en zonas seguras de la ciudad.', 20, 'Ejercicio', 'Activa', 1);
 INSERT INTO actividad (nombre, descripcion, recompensa, categoria, estado, usuario_id) VALUES ('Ciclismo Urbano 5km', 'Realiza un recorrido en bicicleta por tu distrito fomentando la movilidad sostenible.', 30, 'Ejercicio', 'Activa', 1);

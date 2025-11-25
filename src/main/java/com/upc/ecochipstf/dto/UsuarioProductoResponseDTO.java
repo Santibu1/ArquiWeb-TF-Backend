@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 public class UsuarioProductoResponseDTO {
     private Long id;
     private String producto;
+    private String urlImagen;
     private String estado;
     private Integer ecobitsUtilizados;
     private LocalDateTime fecha;

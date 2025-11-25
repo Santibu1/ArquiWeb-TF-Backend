@@ -17,6 +17,7 @@ public class ProductoDTO {
     private Long productoId;
     private String nombre;
     private String categoria;
+    private String urlImagen;
     @NotNull(message = "El precio no puede ser nula")
     @Min(value = 1, message = "El precio mínimo es 1 sol")
     private Double precio;

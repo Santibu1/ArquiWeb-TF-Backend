@@ -17,6 +17,8 @@ public class Producto {
     private Long productoId;
     private String nombre;
     private String categoria;
+    @Column(length = 500) // Un poco largo por si la URL es extensa
+    private String urlImagen;
     private double precio;
     private Integer stock;
     private String estado;
