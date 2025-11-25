@@ -71,8 +71,10 @@ public class UsuarioProductoService implements IUsuarioProductoService {
     public List<UsuarioProductoResponseDTO> historial(Long usuarioId) {
         return usuarioProductoRepository.findByUsuarioUsuarioIdOrderByFechaCanjeDesc(usuarioId)
                 .stream()
-                .map(a -> {UsuarioProductoResponseDTO dto = modelMapper.map(a, UsuarioProductoResponseDTO.class);
+                .map(a -> {
+                    UsuarioProductoResponseDTO dto = modelMapper.map(a, UsuarioProductoResponseDTO.class);
                     dto.setProducto(a.getProducto().getNombre());
+                    dto.setUrlImagen(a.getProducto().getUrlImagen()); // <-- Mapeo manual si es necesario
                     dto.setId(a.getId());
                     return dto;
                 }).collect(Collectors.toList());
