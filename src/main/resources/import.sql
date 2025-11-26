@@ -49,13 +49,13 @@ INSERT INTO actividad (nombre, descripcion, recompensa, categoria, estado, usuar
 INSERT INTO solicitud (id_moderador, id_admin, nombre_comunidad, ubicacion, descripcion, estado, fecha_creacion, fecha_revision) VALUES (5, null, 'EcoDeportistas Lima', 'San Borja', 'Grupo de corredores y ciclistas que canjean puntos por productos ecológicos.', 'Activo', '2025-10-05', '2025-10-05');
 INSERT INTO solicitud (id_moderador, id_admin, nombre_comunidad, ubicacion, descripcion, estado, fecha_creacion, fecha_revision) VALUES (2, null, 'EcoRecolecta Flash', 'Lima', 'Grupo de recolecta en diferentes puntos de la capital.', 'Activo', '2025-10-05', '2025-10-05');
 
---INSERT INTO comunidad (id_moderador, idsolicitud, estado, ubicacion, nombre, descripcion) VALUES (5, 1, 'Aprobada', 'San Borja', 'EcoDeportistas Lima', 'Grupo de corredores y ciclistas que canjean puntos por productos ecológicos.');
+INSERT INTO comunidad (id_moderador, idsolicitud, estado, ubicacion, nombre, descripcion) VALUES (5, 1, 'Aprobada', 'San Borja', 'EcoDeportistas Lima', 'Grupo de corredores y ciclistas que canjean puntos por productos ecológicos.');
 
 INSERT INTO evento (nombre, descripcion, ubicacion, fecha, organizador, beneficios, recompensa, estado, comunidad_id) VALUES ('Reciclatón Universitaria', 'Campaña de reciclaje de botellas y chips electrónicos dentro del campus.', 'Monterrico - Patio Central', '2025-10-10', 'Comunidad UPC', 'Acumula EcoBits y colabora con el medio ambiente.', 50, 'Activo', 1);
 INSERT INTO evento (nombre, descripcion, ubicacion, fecha, organizador, beneficios, recompensa, estado, comunidad_id) VALUES ('Día Verde UPC', 'Evento ecológico con talleres sobre reducción de residuos y movilidad sostenible.', 'Auditorio Principal UPC', '2025-10-15', 'Comunidad UPC', 'Descuentos en productos ecológicos y reconocimiento digital.', 40, 'Activo', 1);
 
 INSERT INTO usuario_producto (ecobits, fecha, producto_id, usuario_id, estado) VALUES (4, '2025-11-04 04:03:36.256730',  7, 1, 'Completado');
-INSERT INTO usuario_producto (ecobits, fecha, producto_id, usuario_id, estado) VALUES (25, '2025-11-04 04:03:43.522282', , 1, 'Completado');
+INSERT INTO usuario_producto (ecobits, fecha, producto_id, usuario_id, estado) VALUES (25, '2025-11-04 04:03:43.522282', 3, 1, 'Completado');
 INSERT INTO usuario_producto (ecobits, fecha, producto_id, usuario_id, estado) VALUES (30, '2025-11-04 04:03:47.197806',  3, 1, 'Completado');
 INSERT INTO usuario_producto (ecobits, fecha, producto_id, usuario_id, estado) VALUES (2, '2025-11-04 04:03:49.429174',  8, 1, 'Completado');
 INSERT INTO usuario_producto (ecobits, fecha, producto_id, usuario_id, estado) VALUES (650, '2025-11-04 04:03:59.436910',  10, 1, 'Completado');

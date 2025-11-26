@@ -66,6 +66,7 @@ public class MensajeService implements IMensajeService {
         Mensaje guardado = mensajeRepository.save(mensaje);
         MensajeDTO res = modelMapper.map(guardado, MensajeDTO.class);
         res.setUsuarioId(usuario.getUsuarioId());
+        res.setUsuarioNombre(usuario.getNombreUsuario());
         return res;
     }
 
@@ -76,6 +77,7 @@ public class MensajeService implements IMensajeService {
                 .map(m -> {
                     MensajeDTO dto = modelMapper.map(m, MensajeDTO.class);
                     dto.setUsuarioId(m.getUsuario().getUsuarioId());
+                    dto.setUsuarioNombre(m.getUsuario().getNombreUsuario());
                     return dto;
                 })
                 .collect(Collectors.toList());

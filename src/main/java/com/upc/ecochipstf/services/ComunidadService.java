@@ -82,6 +82,17 @@ public class ComunidadService implements IComunidadService {
         Usuario usuario = usuarioRepository.findById(miembroDTO.getIdUsuario())
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
+        boolean perteneceOtraComunidad = comunidadRepository.findAll()
+                .stream()
+                .anyMatch(c -> c.getMiembros() != null &&
+                        c.getMiembros().stream()
+                                .anyMatch(u -> u.getUsuarioId().equals(usuario.getUsuarioId()))
+                );
+
+        if (perteneceOtraComunidad) {
+            throw new RuntimeException("El usuario ya pertenece a una comunidad, no puede unirse a otra.");
+        }
+
         if (comunidad.getMiembros() == null) {
             comunidad.setMiembros(new ArrayList<>());
         }
@@ -128,5 +139,11 @@ public class ComunidadService implements IComunidadService {
             dto.setNombreUsuario(usuario.getNombreUsuario());
             return dto;
         }).collect(Collectors.toList());
+    }
+
+    @Override
+    public ComunidadDTO obtenerComunidadPorMiembro(Long userId) {
+        Comunidad comunidad = comunidadRepository.findByMiembroId(userId);
+        return modelMapper.map(comunidad, ComunidadDTO.class);
     }
 }
