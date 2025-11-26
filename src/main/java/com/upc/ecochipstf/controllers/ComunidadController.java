@@ -4,13 +4,17 @@ import com.upc.ecochipstf.dto.ComunidadDTO;
 import com.upc.ecochipstf.dto.MiembroDTO;
 import com.upc.ecochipstf.interfaces.IComunidadService;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
+@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true", exposedHeaders = "Authorization")
 @RestController
 @RequestMapping("/api/comunidades")
 public class ComunidadController {
@@ -65,5 +69,18 @@ public class ComunidadController {
     public ResponseEntity<List<MiembroDTO>> listarComunidadesPorUsuario(@PathVariable Long usuarioId) {
         List<MiembroDTO> comunidades = comunidadService.listarComunidadesPorUsuario(usuarioId);
         return ResponseEntity.ok(comunidades);
+    }
+
+    @PreAuthorize("hasAnyRole('MODERADOR','CLIENTE')")
+    @GetMapping("/mi-comunidad/{userId}")
+    public ResponseEntity<?> obtenerComunidadDelUsuario(@PathVariable Long userId) {
+        ComunidadDTO comunidadDTO = comunidadService.obtenerComunidadPorMiembro(userId);
+
+        if (comunidadDTO == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("El usuario no pertenece a ninguna comunidad.");
+        }
+
+        return ResponseEntity.ok(comunidadDTO);
     }
 }
