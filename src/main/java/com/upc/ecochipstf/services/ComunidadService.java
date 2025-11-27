@@ -35,7 +35,6 @@ public class ComunidadService implements IComunidadService {
     public ComunidadDTO crearComunidad(ComunidadDTO comunidadDTO) {
         Comunidad comunidad = modelMapper.map(comunidadDTO, Comunidad.class);
 
-        // Vincular solicitud (ya aprobada)
         Solicitud solicitud = solicitudRepository.findById(comunidadDTO.getIdSolicitud())
                 .orElseThrow(() -> new RuntimeException("Solicitud no encontrada"));
         comunidad.setSolicitud(solicitud);
@@ -145,5 +144,19 @@ public class ComunidadService implements IComunidadService {
     public ComunidadDTO obtenerComunidadPorMiembro(Long userId) {
         Comunidad comunidad = comunidadRepository.findByMiembroId(userId);
         return modelMapper.map(comunidad, ComunidadDTO.class);
+    }
+
+    @Override
+    public List<MiembroDTO> listarMiembrosPorComunidad(Long idComunidad) {
+        Comunidad comunidad = comunidadRepository.findById(idComunidad)
+                .orElseThrow(() -> new RuntimeException("Comunidad no encontrada"));
+
+        return comunidad.getMiembros().stream()
+                .map(u -> new MiembroDTO(
+                        u.getUsuarioId(),
+                        u.getNombreUsuario(),
+                        u.getRol().getTipoRol()
+                ))
+                .collect(Collectors.toList());
     }
 }

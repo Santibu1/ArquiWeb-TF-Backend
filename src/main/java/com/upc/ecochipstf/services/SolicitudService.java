@@ -32,17 +32,29 @@ public class SolicitudService implements ISolicitudService {
     @Override
     @Transactional
     public SolicitudDTO crearSolicitud(SolicitudDTO solicitudDTO) {
+        List<Solicitud> activas = solicitudRepository.findSolicitudesActivas(solicitudDTO.getIdModerador());
+        if (!activas.isEmpty()) {
+            SolicitudDTO response = new SolicitudDTO();
+            response.setSuccess(false);
+            response.setMensaje("Ya tienes una solicitud activa. No puedes enviar otra.");
+            return response;
+        }
+
         Solicitud solicitud = modelMapper.map(solicitudDTO, Solicitud.class);
         solicitud.setFechaCreacion(LocalDate.now());
         solicitud.setEstado("Pendiente");
 
-        // Verifica el moderador
         Usuario moderador = usuarioRepository.findById(solicitudDTO.getIdModerador())
                 .orElseThrow(() -> new RuntimeException("Moderador no encontrado"));
         solicitud.setModerador(moderador);
 
         solicitud = solicitudRepository.save(solicitud);
-        return modelMapper.map(solicitud, SolicitudDTO.class);
+
+        SolicitudDTO response = modelMapper.map(solicitud, SolicitudDTO.class);
+        response.setSuccess(true);
+        response.setMensaje("Solicitud registrada correctamente.");
+
+        return response;
     }
 
     @Override
@@ -66,6 +78,13 @@ public class SolicitudService implements ISolicitudService {
         comunidad.setEstado("Activa");
         comunidad.setSolicitud(solicitud);
         comunidad.setModerador(solicitud.getModerador());
+
+        Usuario moderador = solicitud.getModerador();
+        comunidad.setModerador(moderador);
+
+        comunidad.setMiembros(new java.util.ArrayList<>());
+        comunidad.getMiembros().add(moderador);
+
         comunidadRepository.save(comunidad);
 
         return modelMapper.map(solicitud, SolicitudDTO.class);
