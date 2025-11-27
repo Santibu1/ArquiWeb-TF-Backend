@@ -83,4 +83,10 @@ public class ComunidadController {
 
         return ResponseEntity.ok(comunidadDTO);
     }
+
+    @PreAuthorize("hasAnyRole('ADMINISTRADOR', 'MODERADOR', 'CLIENTE')")
+    @GetMapping("/{idComunidad}/miembros")
+    public ResponseEntity<List<MiembroDTO>> listarMiembros(@PathVariable Long idComunidad) {
+        return ResponseEntity.ok(comunidadService.listarMiembrosPorComunidad(idComunidad));
+    }
 }

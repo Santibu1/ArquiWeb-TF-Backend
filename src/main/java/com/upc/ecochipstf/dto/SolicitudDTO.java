@@ -27,4 +27,6 @@ public class SolicitudDTO {
     private String estado;
     private LocalDate fechaCreacion;
     private LocalDate fechaRevision;
+    private String mensaje;
+    private boolean success;
 }
