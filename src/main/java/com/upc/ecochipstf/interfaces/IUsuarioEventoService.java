@@ -10,5 +10,6 @@ public interface IUsuarioEventoService {
     public List<UsuarioEventoDTO> listarEventosPorUsuario(Long usuarioId);
     public void cancelarInscripcion(Long usuarioId, Long eventoId);
     public ReporteParticipacionDTO obtenerReporteMensual(Long usuarioId, int mes, int anio);
+    public List<UsuarioEventoDTO> listarParticipantesPorEvento(Long eventoId);
 }//
 //

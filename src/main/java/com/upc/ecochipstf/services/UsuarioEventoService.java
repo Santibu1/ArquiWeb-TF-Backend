@@ -61,8 +61,18 @@ public class UsuarioEventoService implements IUsuarioEventoService {
     @Override
     public List<UsuarioEventoDTO> listarEventosPorUsuario(Long usuarioId) {
         List<UsuarioEvento> lista = usuarioEventoRepository.findByUsuarioUsuarioId(usuarioId);
+
         return lista.stream()
-                .map(e -> modelMapper.map(e, UsuarioEventoDTO.class))
+                .map(e -> {
+                    UsuarioEventoDTO dto = modelMapper.map(e, UsuarioEventoDTO.class);
+                    // --- AGREGA ESTA LÍNEA MANUALMENTE ---
+                    // A veces el mapper no conecta 'evento.eventoId' con 'eventoId' del DTO
+                    if(e.getEvento() != null) {
+                        dto.setEventoId(e.getEvento().getEventoId());
+                        dto.setNombreUsuario(e.getUsuario().getNombreUsuario());
+                    }
+                    return dto;
+                })
                 .collect(Collectors.toList());
     }
 
@@ -96,6 +106,20 @@ public class UsuarioEventoService implements IUsuarioEventoService {
                 totalPuntos,
                 nombresEventos
         );
+    }
+
+    @Override
+    public List<UsuarioEventoDTO> listarParticipantesPorEvento(Long eventoId) {
+        List<UsuarioEvento> inscripciones = usuarioEventoRepository.findByEventoEventoId(eventoId);
+
+        return inscripciones.stream()
+                .map(ue -> {
+                    UsuarioEventoDTO dto = modelMapper.map(ue, UsuarioEventoDTO.class);
+                    // Mapeo manual del nombre porque modelMapper a veces falla en relaciones profundas
+                    dto.setNombreUsuario(ue.getUsuario().getNombreUsuario());
+                    return dto;
+                })
+                .collect(Collectors.toList());
     }
     //
 }
