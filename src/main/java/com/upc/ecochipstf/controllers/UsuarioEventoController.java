@@ -3,13 +3,18 @@ package com.upc.ecochipstf.controllers;
 import com.upc.ecochipstf.dto.ReporteParticipacionDTO;
 import com.upc.ecochipstf.dto.UsuarioEventoDTO;
 import com.upc.ecochipstf.interfaces.IUsuarioEventoService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
+@CrossOrigin(origins = "http://localhost:4200",
+        allowCredentials = "true",
+        exposedHeaders = "Authorization")
 @RequestMapping("/api/usuario-eventos")
 public class UsuarioEventoController {
 
@@ -32,6 +37,11 @@ public class UsuarioEventoController {
     @DeleteMapping("/cancelar/{usuarioId}/{eventoId}")
     public void cancelar(@PathVariable Long usuarioId, @PathVariable Long eventoId) {
         usuarioEventoService.cancelarInscripcion(usuarioId, eventoId);
+    }
+    @PreAuthorize("hasAnyRole('ADMINISTRADOR', 'MODERADOR', 'CLIENTE')")
+    @GetMapping("/evento/{eventoId}") // Nuevo Endpoint
+    public List<UsuarioEventoDTO> listarParticipantes(@PathVariable Long eventoId) {
+        return usuarioEventoService.listarParticipantesPorEvento(eventoId);
     }
 
     @PreAuthorize("hasAnyRole('CLIENTE','MODERADOR')")
