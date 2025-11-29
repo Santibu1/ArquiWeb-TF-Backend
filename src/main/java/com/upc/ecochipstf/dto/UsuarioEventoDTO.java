@@ -16,6 +16,7 @@ public class UsuarioEventoDTO {
     private Long eventoId;
     private String nombreUsuario;
     private int puntosGanados;
+    private Boolean asistenciaConfirmada;
     private String estado;//
     //
 }

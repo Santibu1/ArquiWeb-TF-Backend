@@ -121,5 +121,44 @@ public class UsuarioEventoService implements IUsuarioEventoService {
                 })
                 .collect(Collectors.toList());
     }
-    //
+
+    @Override
+    public UsuarioEventoDTO confirmarAsistenciaEvento(Long eventoId, Long usuarioId) {
+        // 1. Buscar la inscripción del usuario en el evento
+        UsuarioEvento inscripcion = usuarioEventoRepository
+                .findByUsuarioUsuarioIdAndEventoEventoId(usuarioId, eventoId)
+                .orElseThrow(() -> new RuntimeException("El usuario no está inscrito en este evento"));
+
+        // 2. Verificar que no esté ya confirmado
+        if (inscripcion.isAsistenciaConfirmada()) {
+            throw new RuntimeException("La asistencia ya fue confirmada anteriormente");
+        }
+
+        // 3. Confirmar asistencia y cambiar estado
+        inscripcion.setAsistenciaConfirmada(true);
+        inscripcion.setEstado("Asistió");
+
+        // 4. Otorgar ecobits del evento al usuario
+        Evento evento = inscripcion.getEvento();
+        Usuario usuario = inscripcion.getUsuario();
+
+        // ← CAMBIO AQUÍ: usar getEcobits() y setEcobits()
+        long ecobitsActuales = usuario.getEcobits() != null ? usuario.getEcobits() : 0L;
+        usuario.setEcobits(ecobitsActuales + evento.getRecompensa());
+        usuarioRepository.save(usuario);
+
+        // 5. Registrar puntos ganados en la inscripción
+        inscripcion.setPuntosGanados(evento.getRecompensa());
+
+        // 6. Guardar cambios
+        UsuarioEvento actualizado = usuarioEventoRepository.save(inscripcion);
+
+        // 7. Convertir a DTO y retornar
+        UsuarioEventoDTO dto = modelMapper.map(actualizado, UsuarioEventoDTO.class);
+        dto.setNombreUsuario(usuario.getNombreUsuario());
+        dto.setEventoId(evento.getEventoId());
+        dto.setUsuarioId(usuario.getUsuarioId());
+
+        return dto;
+    }
 }

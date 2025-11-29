@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.time.LocalDateTime;
 
 @Setter
@@ -27,5 +26,7 @@ public class UsuarioEvento {
 
     private int puntosGanados;
     private String estado;
+    @Column(name = "asistencia_confirmada")
+    private boolean asistenciaConfirmada = false;
 }//
 //

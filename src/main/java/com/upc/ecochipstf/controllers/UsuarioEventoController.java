@@ -52,5 +52,14 @@ public class UsuarioEventoController {
             @RequestParam int anio) {
         return usuarioEventoService.obtenerReporteMensual(usuarioId, mes, anio);
     }
+
+    @CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
+    @PreAuthorize("hasRole('MODERADOR')")
+    @PostMapping("/confirmar-asistencia/{eventoId}/{usuarioId}")
+    public UsuarioEventoDTO confirmarAsistencia(
+            @PathVariable Long eventoId,
+            @PathVariable Long usuarioId) {
+        return usuarioEventoService.confirmarAsistenciaEvento(eventoId, usuarioId);
+    }
 }
 
