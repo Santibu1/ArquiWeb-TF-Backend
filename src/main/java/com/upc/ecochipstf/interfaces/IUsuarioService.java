@@ -13,6 +13,9 @@ public interface IUsuarioService {
     public List<UsuarioDTO> listarUsuarios();
     public UsuarioDTO asignarPlan(Long usuarioId, Long planId);
     public UsuarioDTO buscarPorEmail(String email);
-    
+    List<UsuarioDTO> listarModeradores();
+    List<UsuarioDTO> listarClientes();
+    public UsuarioDTO reactivarUsuario(Long id);
+    public UsuarioDTO obtenerEstadoPlan(String email);
     public LoginDTO login(LoginDTO loginDTO);
 }

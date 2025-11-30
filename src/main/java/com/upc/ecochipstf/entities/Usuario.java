@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Setter
@@ -50,6 +51,11 @@ public class Usuario {
     @JoinColumn(name = "plan_id", nullable = true)
     private Plan plan;
 
+    @Column(name = "fecha_inicio_plan")
+    private LocalDate fechaInicioPlan;
+
+    @Column(name = "fecha_fin_plan")
+    private LocalDate fechaFinPlan;
     @ManyToMany(mappedBy = "miembros", fetch = FetchType.LAZY)
     private List<Comunidad> comunidades;//
 }
