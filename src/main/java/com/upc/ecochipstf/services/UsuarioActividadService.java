@@ -31,43 +31,43 @@ public class UsuarioActividadService implements IUsuarioActividadService {
     @Override
     @Transactional
     public UsuarioActividadDTO completarActividad(Long actividadId, Long usuarioId) {
+
         Actividad actividad = actividadRepository.findById(actividadId)
-                .orElseThrow(() -> new RuntimeException("Actividad con ID " + actividadId + " no encontrada"));
+                .orElseThrow(() -> new RuntimeException("Actividad no encontrada"));
 
         Usuario usuario = usuarioRepository.findById(usuarioId)
-                .orElseThrow(() -> new RuntimeException("Usuario con ID " + usuarioId + " no encontrado"));
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
         if (!"Activa".equalsIgnoreCase(actividad.getEstadoActividad())) {
             throw new RuntimeException("La actividad no está activa.");
         }
-
-        // Crear relación
+        // Registrar relación usuario-actividad
         UsuarioActividad usuarioActividad = new UsuarioActividad();
         usuarioActividad.setUsuario(usuario);
         usuarioActividad.setActividad(actividad);
         usuarioActividad.setEstado("Completada");
         usuarioActividad.setFechaCompletado(LocalDate.now());
         usuarioActividadRepository.save(usuarioActividad);
-
         // Recompensa base
-        int recompensa = actividad.getRecompensaActividad();
+        int recompensaBase = actividad.getRecompensaActividad();
+        int recompensaFinal = recompensaBase;
 
-        // Verificar si el usuario tiene plan
-        if (usuario.getPlan() != null) {
-            Double porcentajeExtra = usuario.getPlan().getPorcentajeExtra(); // Ej: 0.10 (10%)
-            if (porcentajeExtra != null && porcentajeExtra > 0) {
-                int extra = (int) Math.round(recompensa * porcentajeExtra);
-                recompensa += extra;
-            }
+        // Si el usuario tiene un plan, aumentar la recompensa
+        if (usuario.getPlan() != null && usuario.getPlan().getPorcentajeExtra() != null) {
+            double multiplicador = usuario.getPlan().getPorcentajeExtra();  // Ej: 0, 5, 10
+            int extra = (int) (recompensaBase * multiplicador);
+            recompensaFinal += extra;
         }
 
-        // Sumar ecoBits al usuario
-        Long ecoBitsActuales = usuario.getEcobits() == null ? 0L : usuario.getEcobits();
-        usuario.setEcobits(ecoBitsActuales + recompensa);
+        // Actualizar ecobits del usuario
+        long ecobitsActuales = usuario.getEcobits() == null ? 0 : usuario.getEcobits();
+        usuario.setEcobits(ecobitsActuales + recompensaFinal);
         usuarioRepository.save(usuario);
 
+        // Devuelve información
         return modelMapper.map(usuarioActividad, UsuarioActividadDTO.class);
     }
+
 
     @Override
     public List<UsuarioActividadDTO> listarActividadesPorUsuario(Long usuarioId) {

@@ -37,6 +37,25 @@ public class UsuarioController {
         List<UsuarioDTO> lista = usuarioService.listarUsuarios();
         return ResponseEntity.ok(lista);
     }
+    //LISTAR USUARIOS POR ROL
+    @PreAuthorize("hasRole('ADMINISTRADOR')")
+    @GetMapping("/listarModeradores")
+    public ResponseEntity<List<UsuarioDTO>> listarModeradores() {
+        return ResponseEntity.ok(usuarioService.listarModeradores());
+    }
+    @PreAuthorize("hasRole('ADMINISTRADOR')")
+    @GetMapping("/listarClientes")
+    public ResponseEntity<List<UsuarioDTO>> listarClientes() {
+        return ResponseEntity.ok(usuarioService.listarClientes());
+    }
+    @PreAuthorize("hasRole('ADMINISTRADOR')")
+    @PutMapping("/reactivarUsuario/{id}")
+    public ResponseEntity<UsuarioDTO> reactivarUsuario(@PathVariable Long id) {
+        UsuarioDTO dto = usuarioService.reactivarUsuario(id);
+        return ResponseEntity.ok(dto);
+    }
+
+    //------------------------------------------------
 
     @PreAuthorize("hasRole('ADMINISTRADOR')")
     @DeleteMapping("/eliminarUsuario/{id}")
@@ -77,5 +96,15 @@ public class UsuarioController {
         // Usas tu servicio para buscar al usuario por su email (que es el username)
         UsuarioDTO usuarioDTO = usuarioService.buscarPorEmail(userEmail);
         return ResponseEntity.ok(usuarioDTO);
+    }
+
+    @PreAuthorize("hasAnyRole('ADMINISTRADOR', 'MODERADOR', 'CLIENTE')")
+    @GetMapping("/mi-plan")
+    public ResponseEntity<UsuarioDTO> obtenerMiPlan() {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        UsuarioDTO dto = usuarioService.obtenerEstadoPlan(email);
+        return ResponseEntity.ok(dto);
     }
 }

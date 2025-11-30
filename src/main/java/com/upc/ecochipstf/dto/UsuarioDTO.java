@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Setter
 @Getter
 @AllArgsConstructor
@@ -25,10 +27,15 @@ public class UsuarioDTO {
     @Min(value = 14, message = "La edad mínima es 14 años")
     @Max(value = 60, message = "La edad máxima es 59 años")
     private Integer edadUsuario;
+    private String estado;
     private Long ecobits;
+
+    private LocalDate fechaInicioPlan;
+    private LocalDate fechaFinPlan;
+    private Boolean planActivo;
+    private Long diasRestantes;
+
 
     private Long rolId;
     private Long planId;
-
-
 }

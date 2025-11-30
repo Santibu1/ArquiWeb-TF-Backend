@@ -24,7 +24,7 @@ public class PlanController {
         return planService.crearPlan(planDTO);
     }
 
-    @PreAuthorize("hasRole('ADMINISTRADOR')")
+    @PreAuthorize("hasAnyRole('ADMINISTRADOR', 'MODERADOR', 'CLIENTE')")
     @GetMapping("/Listar-Planes-Activos")
     public List<PlanDTO> listarPlanesActivos() {
         return planService.listarPlanesActivos();
