@@ -2,9 +2,9 @@ INSERT INTO rol (tipo) VALUES ('ADMINISTRADOR');
 INSERT INTO rol (tipo) VALUES ('MODERADOR');
 INSERT INTO rol (tipo) VALUES ('CLIENTE');
 
-INSERT INTO plan (nombre, costo, duracion_dias, porcentaje_extra, estado) VALUES ('Plan Basico', 9.99, 7, 1.25, 'Activo');
-INSERT INTO plan (nombre, costo, duracion_dias, porcentaje_extra, estado) VALUES ('Plan Premium', 19.99, 30, 1.50, 'Activo');
-INSERT INTO plan (nombre, costo, duracion_dias, porcentaje_extra, estado) VALUES ('Plan Anual', 49.99, 365, 2.0, 'Activo');
+INSERT INTO plan (nombre, costo, duracion_dias, porcentaje_extra, estado) VALUES ('Plan Basico', 9.99, 7, 0.25, 'Activo');
+INSERT INTO plan (nombre, costo, duracion_dias, porcentaje_extra, estado) VALUES ('Plan Premium', 19.99, 30, 0.50, 'Activo');
+INSERT INTO plan (nombre, costo, duracion_dias, porcentaje_extra, estado) VALUES ('Plan Anual', 49.99, 365, 1.0, 'Activo');
 
 INSERT INTO usuario (nombre, apellido, correo, password, edad, estado, ecobits, id_rol, plan_id) VALUES ('Carlos', 'Admin', 'admin@eco.com', '$2a$12$qm1yvJR1Q4kd8p2tD/N/ZuA5T3d3TXJv332Lrgh78h/osvFOBXct2', 30, 'Activo', 10000, 1, 1);
 INSERT INTO usuario (nombre, apellido, correo, password, edad, estado, ecobits, id_rol, plan_id) VALUES ('Lucía', 'Moderadora', 'moderador@eco.com', '$2a$12$/lYIOo0DTTIpeJBx7g56GOmJIKEPqFnWZRccrzmwhdwqWy64cdNCi', 28, 'Activo', 5000, 2, 1);
