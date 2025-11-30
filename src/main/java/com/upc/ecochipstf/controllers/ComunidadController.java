@@ -11,7 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true", exposedHeaders = "Authorization")
@@ -88,5 +90,25 @@ public class ComunidadController {
     @GetMapping("/{idComunidad}/miembros")
     public ResponseEntity<List<MiembroDTO>> listarMiembros(@PathVariable Long idComunidad) {
         return ResponseEntity.ok(comunidadService.listarMiembrosPorComunidad(idComunidad));
+    }
+
+    @GetMapping("/verificar-comunidad/{userId}")
+    public ResponseEntity<?> verificarComunidadDelUsuario(@PathVariable Long userId) {
+        ComunidadDTO comunidadDTO = comunidadService.obtenerComunidadDeMiembro(userId);
+
+        if (comunidadDTO == null) {
+            Map<String, Object> body = new HashMap<>();
+            body.put("pertenece", false);
+            body.put("idComunidad", null);
+            return ResponseEntity.ok(body);
+        }
+
+        return ResponseEntity.ok(
+                Map.ofEntries(
+                        Map.entry("pertenece", true),
+                        Map.entry("idComunidad", comunidadDTO.getIdComunidad()),
+                        Map.entry("comunidad", comunidadDTO)
+                )
+        );
     }
 }

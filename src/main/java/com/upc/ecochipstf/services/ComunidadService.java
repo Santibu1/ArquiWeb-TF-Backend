@@ -147,6 +147,15 @@ public class ComunidadService implements IComunidadService {
     }
 
     @Override
+    public ComunidadDTO obtenerComunidadDeMiembro(Long userId) {
+        Comunidad comunidad = comunidadRepository.findByMiembroId(userId);
+        if (comunidad == null) {
+            return null;
+        }
+        return modelMapper.map(comunidad, ComunidadDTO.class);
+    }
+
+    @Override
     public List<MiembroDTO> listarMiembrosPorComunidad(Long idComunidad) {
         Comunidad comunidad = comunidadRepository.findById(idComunidad)
                 .orElseThrow(() -> new RuntimeException("Comunidad no encontrada"));
