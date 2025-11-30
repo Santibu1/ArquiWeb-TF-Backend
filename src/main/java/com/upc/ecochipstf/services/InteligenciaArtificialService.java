@@ -13,7 +13,7 @@ public class InteligenciaArtificialService {
     private final RestTemplate restTemplate;
 
     private static final String API_URL = "https://api.groq.com/openai/v1/chat/completions";
-    private static final String API_KEY = System.getenv("GROQ_API_KEY");
+    private static final String API_KEY = "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";
 
 
     public InteligenciaArtificialService(RestTemplate restTemplate) {
