@@ -15,7 +15,7 @@ public class EcoChatService {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     private static final String API_URL = "https://api.adviceslip.com/advice";
-    private static final String API_KEY = System.getenv("GROQ_API_KEY");
+    private static final String API_KEY = "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";
 
     public EcoChatService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
@@ -24,7 +24,7 @@ public class EcoChatService {
         try {
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
-            headers.setBearerAuth(System.getenv("GROQ_API_KEY"));
+            headers.setBearerAuth(API_KEY);
 
             Map<String, Object> body = Map.of(
                     "model", "llama-3.1-8b-instant",
