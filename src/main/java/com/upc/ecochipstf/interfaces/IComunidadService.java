@@ -17,4 +17,5 @@ public interface IComunidadService {
     public ComunidadDTO obtenerComunidadPorMiembro(Long userId);
 
     public List<MiembroDTO> listarMiembrosPorComunidad(Long idComunidad);
+    public ComunidadDTO obtenerComunidadDeMiembro(Long userId);
 }
