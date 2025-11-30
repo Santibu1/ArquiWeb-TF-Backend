@@ -21,28 +21,28 @@ public class ActividadController {
     private IActividadService actividadService;
 
 
-    //@PreAuthorize("hasRole('ADMINISTRADOR')")
+    @PreAuthorize("hasRole('ADMINISTRADOR')")
     @PostMapping("/registrarActividad")
     public ResponseEntity<ActividadDTO> crearActividad(@Valid @RequestBody ActividadDTO actividadDTO) {
         return ResponseEntity.ok(actividadService.crearActividad(actividadDTO));
     }
 
 
-    //@PreAuthorize("hasAnyRole('ADMINISTRADOR', 'MODERADOR', 'CLIENTE')")
+    @PreAuthorize("hasAnyRole('ADMINISTRADOR', 'MODERADOR', 'CLIENTE')")
     @GetMapping("/listarActividades")
     public ResponseEntity<List<ActividadDTO>> listarActividadesActivas() {
         return ResponseEntity.ok(actividadService.listarActividadesActivas());
     }
 
 
-    //@PreAuthorize("hasRole('ADMINISTRADOR')")
+    @PreAuthorize("hasRole('ADMINISTRADOR')")
     @GetMapping("/listarActividadesPorID/{id}")
     public ResponseEntity<ActividadDTO> obtenerActividadPorId(@PathVariable Long id) {
         return ResponseEntity.ok(actividadService.obtenerActividadPorId(id));
     }   
 
 
-    //@PreAuthorize("hasRole('ADMINISTRADOR')")
+    @PreAuthorize("hasRole('ADMINISTRADOR')")
     @PutMapping("/actualizarActividades/{id}")
     public ResponseEntity<ActividadDTO> actualizarActividad(@PathVariable Long id, @RequestBody ActividadDTO actividadDTO) {
         actividadDTO.setActividadId(id);
@@ -50,7 +50,7 @@ public class ActividadController {
     }
 
 
-    //@PreAuthorize("hasRole('ADMINISTRADOR')")
+    @PreAuthorize("hasRole('ADMINISTRADOR')")
     @DeleteMapping("/eliminar-Actividad/{id}")
     public ResponseEntity<Void> eliminarActividad(@PathVariable Long id) {
         actividadService.eliminarActividad(id);
